@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkxm6wwiuc2rc"]
+
+[ext_resource type="Script" path="res://Fruta/Pelota.gd" id="1_6a480"]
+[ext_resource type="Texture2D" uid="uid://dlc11x54nny6i" path="res://Fruta/icon.svg" id="2_my3ti"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xvc6m"]
+friction = 0.1
+bounce = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w50lp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rty1y"]
+
+[node name="Pelota" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_xvc6m")
+script = ExtResource("1_6a480")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w50lp")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(0.136719, 0.132813)
+texture = ExtResource("2_my3ti")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CircleShape2D_rty1y")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

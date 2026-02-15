@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://be3rkbc8j6fox"]
+
+[ext_resource type="Script" path="res://Juego de frutas/Principal.gd" id="1_idvpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l62vh"]
+size = Vector2(94.9999, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfie4"]
+size = Vector2(89, 20)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_idvpv")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-13, 81)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(35, -0.999846)
+shape = SubResource("RectangleShape2D_l62vh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-13, 81)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-150, 1.99933)
+shape = SubResource("RectangleShape2D_l62vh")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(150, -2.00006)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(-104.002, 240.999)
+shape = SubResource("RectangleShape2D_l62vh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(44.5, 10)
+shape = SubResource("RectangleShape2D_rfie4")
+
+[node name="label" type="Label" parent="."]
+offset_right = 89.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 9
+text = "hola"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

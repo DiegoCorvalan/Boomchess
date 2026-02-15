@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkxm6wwiuc2rc"]
+
+[ext_resource type="Texture2D" uid="uid://dlc11x54nny6i" path="res://icon.svg" id="2_x6rco"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w50lp"]
+
+[node name="Pelota" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w50lp")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(0.136719, 0.132813)
+texture = ExtResource("2_x6rco")
