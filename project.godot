@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Cajon de frutas"
+config/name="Boomchess"
 run/main_scene="res://Boomchess/scenes/ui/Principal.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Fruta/icon.svg"

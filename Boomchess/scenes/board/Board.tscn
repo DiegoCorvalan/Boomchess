@@ -13,6 +13,7 @@ expand_mode = 1
 script = ExtResource("1_6f4mn")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_right = 21.0

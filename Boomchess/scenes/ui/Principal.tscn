@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuub51f1twdki"]
+[gd_scene load_steps=5 format=3 uid="uid://cuub51f1twdki"]
 
 [ext_resource type="Texture2D" uid="uid://cwsuse3u0vued" path="res://Boomchess/assets/textures/board/Board.png" id="1_52uku"]
 [ext_resource type="PackedScene" uid="uid://b4uj27mlfxfv0" path="res://Boomchess/scenes/board/Board.tscn" id="3_08xgu"]
 [ext_resource type="Texture2D" uid="uid://dlc11x54nny6i" path="res://Fruta/icon.svg" id="4_cammh"]
+[ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="4_kjjld"]
 
 [node name="Principal" type="Node2D"]
 
@@ -19,52 +20,66 @@ offset_bottom = 124.625
 columns = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect3" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="1.1" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 texture = ExtResource("4_cammh")
 
-[node name="TextureRect" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="1.2" parent="GridContainer" instance=ExtResource("3_08xgu")]
+layout_mode = 2
+pieza = ExtResource("4_kjjld")
+
+[node name="1.3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect2" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="1.4" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect4" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="2.1" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect5" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="2.2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect6" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="2.3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect7" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="2.4" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect8" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="3.1" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect9" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="TextureRect10" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="3.2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 texture = ExtResource("1_52uku")
 
-[node name="TextureRect11" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="3.3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect12" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="3.4" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect13" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="4.1" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect14" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="4.2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect15" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="4.3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
-[node name="TextureRect16" parent="GridContainer" instance=ExtResource("3_08xgu")]
+[node name="4.4" parent="GridContainer" instance=ExtResource("3_08xgu")]
+layout_mode = 2
+
+[node name="5.1" parent="GridContainer" instance=ExtResource("3_08xgu")]
+layout_mode = 2
+
+[node name="5.2" parent="GridContainer" instance=ExtResource("3_08xgu")]
+layout_mode = 2
+texture = ExtResource("4_cammh")
+
+[node name="5.3" parent="GridContainer" instance=ExtResource("3_08xgu")]
+layout_mode = 2
+
+[node name="5.4" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2

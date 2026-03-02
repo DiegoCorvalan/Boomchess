@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://b2q5clomhb7m6"]
+
+[ext_resource type="Texture2D" uid="uid://dp06lmxxf7dus" path="res://Boomchess/assets/textures/pieces/grassh-w.svg" id="1_3upmv"]
+[ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="1_82j58"]
+
+[resource]
+script = ExtResource("1_82j58")
+nombre = "Peon"
+icon = ExtResource("1_3upmv")
+movimiento = Vector2(1, 0)

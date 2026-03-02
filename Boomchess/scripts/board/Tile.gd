@@ -1,18 +1,40 @@
-extends TextureRect
+extends TextureRect # Cada casilla del tablero es un TextureRect
 
-var texture_bk : Texture2D
-var ghost : Control = null
+var pieza_bk : Pieza # Guarda la pieza original mientras se arrastra
+var ghost : Control = null # Nodo "fantasma" que sigue al mouse durante el drag
+
+@export var pieza : Pieza # Datos de la pieza que está en esta casilla
+@export var board: Node # Referencia al tablero que sabe mover piezas
+@export var coord: Vector2i # Coordenadas de esta casilla en el tablero (x, y)
+
+func _ready():
+	# Al iniciar el nodo, actualiza la textura según la pieza asignada
+	_piece_update()
+
+func _piece_update():
+	# Actualiza la imagen y el tooltip de la casilla según la pieza actual
+	if not pieza:
+		texture = null
+		return
+	
+	texture = pieza.icon
+	tooltip_text = pieza.nombre
+
 
 func _get_drag_data(_at_position):
-	texture_bk = texture
+	# Se ejecuta cuando se empieza a arrastrar desde esta casilla
+	if not pieza:
+		return null
 	
-	# Crear ghost que seguirá al mouse
+	pieza_bk = pieza
+	
+	# Crea un "ghost" que seguirá al mouse mientras se arrastra la pieza
 	ghost = Control.new()
 	ghost.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ghost.z_index = 1000
 	
 	var preview_texture = TextureRect.new()
-	preview_texture.texture = texture
+	preview_texture.texture = pieza.icon
 	preview_texture.expand_mode = 1
 	preview_texture.size = Vector2(25, 25)
 	preview_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -23,30 +45,41 @@ func _get_drag_data(_at_position):
 	var mouse_pos = get_global_mouse_position()
 	ghost.global_position = mouse_pos - Vector2(12.5, 12.5)
 	
-	# Preview invisible para el sistema de drag and drop
+	# Preview invisible requerido por el sistema de drag and drop de Godot
 	var invisible_preview = Control.new()
 	invisible_preview.size = Vector2(1, 1)
 	invisible_preview.visible = false
 	set_drag_preview(invisible_preview)
 	
-	texture = null
-	return preview_texture.texture
+	# Vacía la casilla a nivel lógico y visual mientras se arrastra
+	pieza = null
+	_piece_update()
+	
+	# Los datos que se arrastran son la pieza, no solo la textura
+	return pieza_bk
 
 func _process(_delta):
+	# Mientras exista el ghost, lo hace seguir la posición del mouse
 	if ghost != null and ghost.is_inside_tree():
 		var mouse_pos = get_global_mouse_position()
 		ghost.global_position = mouse_pos - Vector2(12.5,5)
 	
 func _can_drop_data(_pos, data):
-	if texture == null:
-		return data is Texture2D
+	# Solo acepta datos si la casilla no tiene pieza y lo que llega es una Pieza
+	if pieza == null:
+		return data is Pieza
 
 	
 func _drop_data(_pos, data):
-	texture = data
+	# Cuando se suelta algo sobre esta casilla, asignamos la pieza y actualizamos el icono
+	if data is Pieza:
+		pieza = data
+		_piece_update()
+		_movment()
 	
 	
 func _notification(what:int) -> void:
+	# Notificación especial para saber cuándo termina el drag and drop
 	if what == Node.NOTIFICATION_DRAG_END:
 		if ghost != null:
 			if ghost.is_inside_tree():
@@ -54,9 +87,14 @@ func _notification(what:int) -> void:
 			ghost = null
 		
 		if is_drag_successful():
-			texture_bk = null
+			# El arrastre terminó bien, ya no necesitamos la pieza anterior
+			pieza_bk = null
 		else:
-			if texture == null:
-				texture = texture_bk
-				texture_bk = null
+			if pieza == null:
+				# El arrastre falló, restauramos la pieza original e icono
+				pieza = pieza_bk
+				_piece_update()
+				pieza_bk = null
 
+func _movment():
+	pass
