@@ -7,4 +7,5 @@
 script = ExtResource("1_82j58")
 nombre = "Peon"
 icon = ExtResource("1_3upmv")
-movimiento = Vector2(1, 0)
+movimiento = Vector2(0, -1)
+tipo = "Exacto"
