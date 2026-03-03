@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://do5kxfxhxjmcy"]
+
+[ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="1_qkvky"]
+[ext_resource type="Texture2D" uid="uid://ctkrtxpsgr2o5" path="res://Boomchess/assets/textures/pieces/king-b.svg" id="1_wm1iq"]
+
+[resource]
+script = ExtResource("1_qkvky")
+nombre = "Rey"
+icon = ExtResource("1_wm1iq")
+movimiento = Vector2(0, 0)
+tipo = "enemigo"

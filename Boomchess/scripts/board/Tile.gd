@@ -2,9 +2,7 @@ extends TextureRect # Cada casilla del tablero es un TextureRect
 
 var pieza_bk : Pieza # Guarda la pieza original mientras se arrastra
 var ghost : Control = null # Nodo "fantasma" que sigue al mouse durante el drag
-
 @export var pieza : Pieza # Datos de la pieza que está en esta casilla
-
 
 func _ready():
 	# Al iniciar el nodo, actualiza la textura según la pieza asignada
@@ -20,43 +18,6 @@ func _piece_update():
 	texture = pieza.icon
 	tooltip_text = pieza.nombre
 
-
-func _get_drag_data(_at_position):
-	# Se ejecuta cuando se empieza a arrastrar desde esta casilla
-	if not pieza:
-		return null
-	
-	pieza_bk = pieza
-	
-	# Crea un "ghost" que seguirá al mouse mientras se arrastra la pieza
-	ghost = Control.new()
-	ghost.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ghost.z_index = 1000
-	
-	var preview_texture = TextureRect.new()
-	preview_texture.texture = pieza.icon
-	preview_texture.expand_mode = 1
-	preview_texture.size = Vector2(25, 25)
-	preview_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ghost.add_child(preview_texture)
-	ghost.size = Vector2(25, 25)
-	
-	get_viewport().add_child(ghost)
-	var mouse_pos = get_global_mouse_position()
-	ghost.global_position = mouse_pos - Vector2(12.5, 12.5)
-	
-	# Preview invisible requerido por el sistema de drag and drop de Godot
-	var invisible_preview = Control.new()
-	invisible_preview.size = Vector2(1, 1)
-	invisible_preview.visible = false
-	set_drag_preview(invisible_preview)
-	
-	# Vacía la casilla a nivel lógico y visual mientras se arrastra
-	pieza = null
-	_piece_update()
-	
-	# Los datos que se arrastran son la pieza, no solo la textura
-	return pieza_bk
 
 func _process(_delta):
 	# Mientras exista el ghost, lo hace seguir la posición del mouse
@@ -140,12 +101,14 @@ func _movment():
 		
 		while true:
 			var candidato_nombre := str(candidata_fila) + sep + str(candidata_col)
+
 			if not grid.has_node(candidato_nombre):
+				print(not grid.has_node(candidato_nombre))
 				break
-			
 			var candidato := grid.get_node(candidato_nombre)
 			if candidato.pieza != null:
-				break
+				if candidato.pieza.tipo != "enemigo":
+					break
 			
 			ultima_ok_fila = candidata_fila
 			ultima_ok_col = candidata_col
@@ -185,8 +148,12 @@ func _movment():
 	tween.finished.connect(func ():
 		# Solo mover si el destino no tiene pieza
 		if destino.pieza != null:
-			global_position = origen_pos
-			return
+			if destino.pieza.tipo != "enemigo":
+				global_position = origen_pos
+				return
+			else:
+				var label = $"../../Label"
+				label.visible = true
 		
 		destino.pieza = pieza
 		destino._piece_update()

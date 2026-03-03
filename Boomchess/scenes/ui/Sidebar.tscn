@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7vlqn06773p2"]
+[gd_scene load_steps=6 format=3 uid="uid://b7vlqn06773p2"]
 
 [ext_resource type="Script" path="res://Boomchess/scripts/board/sidebarTile.gd" id="1_aeods"]
 [ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="2_myf1b"]
+[ext_resource type="Resource" uid="uid://qles2tgxwmjf" path="res://Boomchess/scripts/pieces/Caballo.tres" id="3_rtfln"]
 [ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="3_xslpx"]
+[ext_resource type="Resource" uid="uid://720kbn6lw5il" path="res://Boomchess/scripts/pieces/Torre.tres" id="4_umv3u"]
 
 [node name="Sidebar" type="GridContainer"]
 anchors_preset = 15
@@ -34,6 +36,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 expand_mode = 1
 script = ExtResource("1_aeods")
+pieza = ExtResource("3_rtfln")
 
 [node name="Panel" type="Panel" parent="TextureRect2"]
 modulate = Color(0, 0.396078, 0.878431, 1)
@@ -49,7 +52,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 expand_mode = 1
 script = ExtResource("1_aeods")
-pieza = ExtResource("3_xslpx")
+pieza = ExtResource("4_umv3u")
 
 [node name="Panel" type="Panel" parent="TextureRect3"]
 modulate = Color(0, 0.396078, 0.878431, 1)
@@ -65,6 +68,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 expand_mode = 1
 script = ExtResource("1_aeods")
+pieza = ExtResource("2_myf1b")
 
 [node name="Panel" type="Panel" parent="TextureRect4"]
 modulate = Color(0, 0.396078, 0.878431, 1)
@@ -80,6 +84,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 expand_mode = 1
 script = ExtResource("1_aeods")
+pieza = ExtResource("3_xslpx")
 
 [node name="Panel" type="Panel" parent="TextureRect5"]
 modulate = Color(0, 0.396078, 0.878431, 1)
