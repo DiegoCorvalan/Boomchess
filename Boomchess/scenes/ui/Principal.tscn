@@ -1,10 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuub51f1twdki"]
+[gd_scene load_steps=8 format=3 uid="uid://cuub51f1twdki"]
 
 [ext_resource type="Texture2D" uid="uid://cwsuse3u0vued" path="res://Boomchess/assets/textures/board/Board.png" id="1_52uku"]
+[ext_resource type="Script" path="res://Boomchess/scripts/board/AnimationPlayer.gd" id="3_0w6ni"]
 [ext_resource type="PackedScene" uid="uid://b4uj27mlfxfv0" path="res://Boomchess/scenes/board/Board.tscn" id="3_08xgu"]
-[ext_resource type="Texture2D" uid="uid://dlc11x54nny6i" path="res://Fruta/icon.svg" id="4_cammh"]
-[ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="4_kjjld"]
-[ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="5_om58y"]
+[ext_resource type="Texture2D" uid="uid://7piiomru0c7t" path="res://Boomchess/assets/textures/pieces/amazon-b.svg" id="5_yfg73"]
+[ext_resource type="PackedScene" uid="uid://b7vlqn06773p2" path="res://Boomchess/scenes/ui/Sidebar.tscn" id="6_hehi4"]
+
+[sub_resource type="Animation" id="Animation_ksw3w"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Amazon-b:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 114), Vector2(60, 90)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xg4wi"]
+_data = {
+"move": SubResource("Animation_ksw3w")
+}
 
 [node name="Principal" type="Node2D"]
 
@@ -14,20 +34,18 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_52uku")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 0.625
-offset_top = 32.625
-offset_right = 92.625
-offset_bottom = 124.625
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 93.0
+offset_bottom = 149.0
 columns = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="1_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
-texture = ExtResource("4_cammh")
 
 [node name="1_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
-pieza = ExtResource("4_kjjld")
 
 [node name="1_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
@@ -52,7 +70,6 @@ layout_mode = 2
 
 [node name="3_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
-texture = ExtResource("1_52uku")
 
 [node name="3_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
@@ -65,7 +82,6 @@ layout_mode = 2
 
 [node name="4_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
-pieza = ExtResource("5_om58y")
 
 [node name="4_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
@@ -78,10 +94,27 @@ layout_mode = 2
 
 [node name="5_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
-texture = ExtResource("4_cammh")
 
 [node name="5_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
 
 [node name="5_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
 layout_mode = 2
+
+[node name="Sidebar" parent="." instance=ExtResource("6_hehi4")]
+offset_left = 24.0
+offset_top = 5.0
+offset_right = 90.0
+offset_bottom = 17.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GridContainer")
+libraries = {
+"": SubResource("AnimationLibrary_xg4wi")
+}
+script = ExtResource("3_0w6ni")
+
+[node name="Amazon-b" type="Sprite2D" parent="."]
+position = Vector2(60, 90)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_yfg73")

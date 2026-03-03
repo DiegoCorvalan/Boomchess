@@ -7,5 +7,5 @@
 script = ExtResource("1_iratw")
 nombre = "Alfil"
 icon = ExtResource("1_axwmu")
-movimiento = Vector2(1, 1)
+movimiento = Vector2(1, -1)
 tipo = "Continuo"

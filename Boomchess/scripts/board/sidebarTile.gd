@@ -63,20 +63,7 @@ func _process(_delta):
 	if ghost != null and ghost.is_inside_tree():
 		var mouse_pos = get_global_mouse_position()
 		ghost.global_position = mouse_pos - Vector2(12.5,5)
-	
-func _can_drop_data(_pos, data):
-	# Solo acepta datos si la casilla no tiene pieza y lo que llega es una Pieza
-	if pieza == null:
-		$Panel.visible = true
-		return data is Pieza
-	
-func _drop_data(_pos, data):
-	# Cuando se suelta algo sobre esta casilla, asignamos la pieza y actualizamos el icono
-	if data is Pieza:
-		pieza = data
-		_piece_update()
-		_movment()
-	
+
 	
 func _notification(what:int) -> void:
 	# Notificación especial para saber cuándo termina el drag and drop
@@ -169,35 +156,12 @@ func _movment():
 	
 	var destino := grid.get_node(destino_nombre)
 	
-	# Animación visual del movimiento de la pieza desde esta casilla hasta la casilla destino
-	var origen_pos: Vector2 = global_position
-	var destino_pos: Vector2 = destino.global_position
+	# Solo mover si el destino no tiene pieza
+	if destino.pieza != null:
+		return
 	
-	var tween := create_tween()
-	tween.tween_property(
-		self,                # Nodo a animar (esta casilla / pieza visual)
-		"global_position",   # Propiedad que se anima
-		destino_pos,         # Posición final
-		0.3                  # Duración en segundos
-	)
+	destino.pieza = pieza
+	destino._piece_update()
 	
-	# Cuando termine la animación, actualizamos el estado lógico del tablero
-	tween.finished.connect(func ():
-		# Solo mover si el destino no tiene pieza
-		if destino.pieza != null:
-			global_position = origen_pos
-			return
-		
-		destino.pieza = pieza
-		destino._piece_update()
-		
-		pieza = null
-		_piece_update()
-		
-		# Volver a colocar este nodo en su posición original del GridContainer
-		global_position = origen_pos
-	)
-
-
-func _on_mouse_exited():
-	$Panel.visible = false # Replace with function body.
+	pieza = null
+	_piece_update()
