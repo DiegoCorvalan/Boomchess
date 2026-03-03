@@ -1,30 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuub51f1twdki"]
+[gd_scene load_steps=4 format=3 uid="uid://cuub51f1twdki"]
 
 [ext_resource type="Texture2D" uid="uid://cwsuse3u0vued" path="res://Boomchess/assets/textures/board/Board.png" id="1_52uku"]
-[ext_resource type="Script" path="res://Boomchess/scripts/board/AnimationPlayer.gd" id="3_0w6ni"]
 [ext_resource type="PackedScene" uid="uid://b4uj27mlfxfv0" path="res://Boomchess/scenes/board/Board.tscn" id="3_08xgu"]
-[ext_resource type="Texture2D" uid="uid://7piiomru0c7t" path="res://Boomchess/assets/textures/pieces/amazon-b.svg" id="5_yfg73"]
 [ext_resource type="PackedScene" uid="uid://b7vlqn06773p2" path="res://Boomchess/scenes/ui/Sidebar.tscn" id="6_hehi4"]
-
-[sub_resource type="Animation" id="Animation_ksw3w"]
-resource_name = "move"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Amazon-b:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(38, 114), Vector2(60, 90)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xg4wi"]
-_data = {
-"move": SubResource("Animation_ksw3w")
-}
 
 [node name="Principal" type="Node2D"]
 
@@ -106,15 +84,3 @@ offset_left = 24.0
 offset_top = 5.0
 offset_right = 90.0
 offset_bottom = 17.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../GridContainer")
-libraries = {
-"": SubResource("AnimationLibrary_xg4wi")
-}
-script = ExtResource("3_0w6ni")
-
-[node name="Amazon-b" type="Sprite2D" parent="."]
-position = Vector2(60, 90)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_yfg73")
