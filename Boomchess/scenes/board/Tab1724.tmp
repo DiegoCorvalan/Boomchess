@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwso14e4ut5ir"]
+
+[ext_resource type="Script" path="res://Boomchess/scripts/board/Tablero.gd" id="1_7mi2g"]
+
+[node name="Tablero" type="GridContainer"]
+offset_top = 33.0
+offset_right = 92.0
+offset_bottom = 149.0
+script = ExtResource("1_7mi2g")

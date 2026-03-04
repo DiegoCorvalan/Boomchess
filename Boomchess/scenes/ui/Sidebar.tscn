@@ -1,10 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7vlqn06773p2"]
+[gd_scene load_steps=2 format=3 uid="uid://b7vlqn06773p2"]
 
-[ext_resource type="Script" path="res://Boomchess/scripts/board/sidebarTile.gd" id="1_aeods"]
-[ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="2_myf1b"]
-[ext_resource type="Resource" uid="uid://qles2tgxwmjf" path="res://Boomchess/scripts/pieces/Caballo.tres" id="3_rtfln"]
-[ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="3_xslpx"]
-[ext_resource type="Resource" uid="uid://720kbn6lw5il" path="res://Boomchess/scripts/pieces/Torre.tres" id="4_umv3u"]
+[ext_resource type="Script" path="res://Boomchess/scripts/board/Sidebar.gd" id="1_2kwlu"]
 
 [node name="Sidebar" type="GridContainer"]
 anchors_preset = 15
@@ -13,84 +9,4 @@ anchor_bottom = 1.0
 offset_bottom = -148.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 5
-
-[node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-script = ExtResource("1_aeods")
-pieza = ExtResource("2_myf1b")
-
-[node name="Panel" type="Panel" parent="TextureRect"]
-modulate = Color(0, 0.396078, 0.878431, 1)
-self_modulate = Color(0, 0, 1, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-script = ExtResource("1_aeods")
-pieza = ExtResource("3_rtfln")
-
-[node name="Panel" type="Panel" parent="TextureRect2"]
-modulate = Color(0, 0.396078, 0.878431, 1)
-self_modulate = Color(0, 0, 1, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-script = ExtResource("1_aeods")
-pieza = ExtResource("4_umv3u")
-
-[node name="Panel" type="Panel" parent="TextureRect3"]
-modulate = Color(0, 0.396078, 0.878431, 1)
-self_modulate = Color(0, 0, 1, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
-
-[node name="TextureRect4" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-script = ExtResource("1_aeods")
-pieza = ExtResource("2_myf1b")
-
-[node name="Panel" type="Panel" parent="TextureRect4"]
-modulate = Color(0, 0.396078, 0.878431, 1)
-self_modulate = Color(0, 0, 1, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
-
-[node name="TextureRect5" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-script = ExtResource("1_aeods")
-pieza = ExtResource("3_xslpx")
-
-[node name="Panel" type="Panel" parent="TextureRect5"]
-modulate = Color(0, 0.396078, 0.878431, 1)
-self_modulate = Color(0, 0, 1, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
+script = ExtResource("1_2kwlu")

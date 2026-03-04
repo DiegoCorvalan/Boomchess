@@ -1,92 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuub51f1twdki"]
+[gd_scene load_steps=11 format=3 uid="uid://cuub51f1twdki"]
 
 [ext_resource type="Texture2D" uid="uid://cwsuse3u0vued" path="res://Boomchess/assets/textures/board/Board.png" id="1_52uku"]
-[ext_resource type="PackedScene" uid="uid://b4uj27mlfxfv0" path="res://Boomchess/scenes/board/Board.tscn" id="3_08xgu"]
+[ext_resource type="PackedScene" uid="uid://dwso14e4ut5ir" path="res://Boomchess/scenes/board/Tablero.tscn" id="2_qeapa"]
+[ext_resource type="Texture2D" uid="uid://b1752ru5x362" path="res://Boomchess/assets/textures/board/Live-Olive.png" id="3_ov7se"]
 [ext_resource type="Resource" uid="uid://do5kxfxhxjmcy" path="res://Boomchess/scripts/pieces/Rey.tres" id="3_qylcf"]
-[ext_resource type="Script" path="res://Boomchess/scenes/ui/TEMPORAL(ELIMINAR).gd" id="5_ch4kq"]
+[ext_resource type="Texture2D" uid="uid://qudyubrg3272" path="res://Boomchess/assets/textures/board/MO107_1web.webp" id="4_0jxh2"]
+[ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="5_akc8u"]
+[ext_resource type="Resource" uid="uid://720kbn6lw5il" path="res://Boomchess/scripts/pieces/Torre.tres" id="6_3hdt2"]
 [ext_resource type="PackedScene" uid="uid://b7vlqn06773p2" path="res://Boomchess/scenes/ui/Sidebar.tscn" id="6_hehi4"]
+[ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="7_l52nu"]
+[ext_resource type="Resource" uid="uid://qles2tgxwmjf" path="res://Boomchess/scripts/pieces/Caballo.tres" id="8_3ohcm"]
 
 [node name="Principal" type="Node2D"]
 
 [node name="Board" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(94.625, 125.625)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_52uku")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 1.0
-offset_top = 33.0
-offset_right = 93.0
-offset_bottom = 149.0
-columns = 4
-metadata/_edit_use_anchors_ = true
-
-[node name="1_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-pieza = ExtResource("3_qylcf")
-
-[node name="1_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="1_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="1_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="2_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="2_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="2_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="2_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="3_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="3_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="3_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="3_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="4_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="4_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="4_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="4_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="5_1" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="5_2" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="5_3" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
-
-[node name="5_4" parent="GridContainer" instance=ExtResource("3_08xgu")]
-layout_mode = 2
+[node name="Tablero" parent="." instance=ExtResource("2_qeapa")]
+offset_right = 90.0
+textura1 = ExtResource("3_ov7se")
+textura2 = ExtResource("4_0jxh2")
+columnas = 4
+filas = 5
+piezas = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([ExtResource("3_qylcf")])
 
 [node name="Sidebar" parent="." instance=ExtResource("6_hehi4")]
 offset_left = 24.0
 offset_top = 5.0
 offset_right = 90.0
 offset_bottom = 17.0
+columnas = 5
+filas = 1
+piezas = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([ExtResource("5_akc8u"), ExtResource("6_3hdt2"), null, ExtResource("7_l52nu"), ExtResource("8_3ohcm")])
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -95,4 +43,3 @@ offset_top = 11.0
 offset_right = 67.0
 offset_bottom = 34.0
 text = "WIN"
-script = ExtResource("5_ch4kq")

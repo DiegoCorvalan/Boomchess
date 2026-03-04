@@ -16,8 +16,8 @@ script = ExtResource("1_6f4mn")
 visible = false
 show_behind_parent = true
 layout_mode = 0
-offset_right = 21.0
-offset_bottom = 22.0
+offset_right = 20.0
+offset_bottom = 20.0
 mouse_filter = 2
 
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc6rtw4shj2pm"]
+
+[ext_resource type="Script" path="res://Boomchess/scripts/board/sidebarTile.gd" id="1_y3h0k"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(10, 10)
+expand_mode = 1
+script = ExtResource("1_y3h0k")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0.396078, 0.878431, 1)
+self_modulate = Color(0, 0, 1, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+mouse_filter = 2

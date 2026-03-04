@@ -103,7 +103,6 @@ func _movment():
 			var candidato_nombre := str(candidata_fila) + sep + str(candidata_col)
 
 			if not grid.has_node(candidato_nombre):
-				print(not grid.has_node(candidato_nombre))
 				break
 			var candidato := grid.get_node(candidato_nombre)
 			if candidato.pieza != null:
@@ -132,37 +131,53 @@ func _movment():
 	
 	var destino := grid.get_node(destino_nombre)
 	
-	# Animación visual del movimiento de la pieza desde esta casilla hasta la casilla destino
+	# Si hay una pieza amiga en el destino, no se mueve; si es enemigo, se permite (y se mostrará el label).
+	if destino.pieza != null and destino.pieza.tipo != "enemigo":
+		return
+	
+	# Animación visual: solo se mueve un sprite "fantasma" con el icono de la pieza,
+	# el Tile y el fondo permanecen quietos en el GridContainer.
 	var origen_pos: Vector2 = global_position
 	var destino_pos: Vector2 = destino.global_position
 	
+	var root := get_tree().current_scene
+	if root == null:
+		root = get_parent()
+	if root == null:
+		return
+	
+	var ghost := Sprite2D.new()
+	ghost.texture = pieza.icon
+	ghost.scale = Vector2(0.16, 0.16)  # más pequeño durante toda la animación (20,20)
+	ghost.global_position = origen_pos + Vector2(10, 10)
+	destino_pos = destino_pos + Vector2(10,10)
+	ghost.z_index = 100
+	root.add_child(ghost)
+	var pieza_bk2 = pieza
+	pieza = null
+	_piece_update()
 	var tween := create_tween()
 	tween.tween_property(
-		self,                # Nodo a animar (esta casilla / pieza visual)
+		ghost,               # Nodo a animar (solo la pieza)
 		"global_position",   # Propiedad que se anima
 		destino_pos,         # Posición final
-		0.3                  # Duración en segundos
+		1                  # Duración en segundos
 	)
 	
 	# Cuando termine la animación, actualizamos el estado lógico del tablero
 	tween.finished.connect(func ():
-		# Solo mover si el destino no tiene pieza
-		if destino.pieza != null:
-			if destino.pieza.tipo != "enemigo":
-				global_position = origen_pos
-				return
-			else:
-				var label = $"../../Label"
+		ghost.queue_free()
+		
+		if destino.pieza != null and destino.pieza.tipo == "enemigo":
+			var label = $"../../Label"
+			if label:
 				label.visible = true
 		
-		destino.pieza = pieza
+		destino.pieza = pieza_bk2
 		destino._piece_update()
+		pieza_bk2 = null
 		
-		pieza = null
-		_piece_update()
-		
-		# Volver a colocar este nodo en su posición original del GridContainer
-		global_position = origen_pos
+
 	)
 
 
