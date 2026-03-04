@@ -146,19 +146,19 @@ func _movment():
 	if root == null:
 		return
 	
-	var ghost := Sprite2D.new()
-	ghost.texture = pieza.icon
-	ghost.scale = Vector2(0.16, 0.16)  # más pequeño durante toda la animación (20,20)
-	ghost.global_position = origen_pos + Vector2(10, 10)
+	var ghost_animation := Sprite2D.new()
+	ghost_animation.texture = pieza.icon
+	ghost_animation.scale = Vector2(0.16, 0.16)  # más pequeño durante toda la animación (20,20)
+	ghost_animation.global_position = origen_pos + Vector2(10, 10)
 	destino_pos = destino_pos + Vector2(10,10)
-	ghost.z_index = 100
-	root.add_child(ghost)
+	ghost_animation.z_index = 100
+	root.add_child(ghost_animation)
 	var pieza_bk2 = pieza
 	pieza = null
 	_piece_update()
 	var tween := create_tween()
 	tween.tween_property(
-		ghost,               # Nodo a animar (solo la pieza)
+		ghost_animation,               # Nodo a animar (solo la pieza)
 		"global_position",   # Propiedad que se anima
 		destino_pos,         # Posición final
 		1                  # Duración en segundos
@@ -166,7 +166,7 @@ func _movment():
 	
 	# Cuando termine la animación, actualizamos el estado lógico del tablero
 	tween.finished.connect(func ():
-		ghost.queue_free()
+		ghost_animation.queue_free()
 		
 		if destino.pieza != null and destino.pieza.tipo == "enemigo":
 			var label = $"../../Label"
