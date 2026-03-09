@@ -1,6 +1,5 @@
 extends GridContainer
 
-@export var nivel : String
 @export var textura1 : Texture2D
 @export var textura2 : Texture2D
 @export var columnas : int 

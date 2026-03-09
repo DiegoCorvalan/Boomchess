@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://b0o2y4skck7cx"]
+
+[ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="1_7wcmv"]
+[ext_resource type="Texture2D" uid="uid://dytlvhofbugg5" path="res://Boomchess/assets/textures/pieces/bpawn2-b.svg" id="1_ro8ma"]
+
+[resource]
+script = ExtResource("1_7wcmv")
+nombre = "Peon E"
+icon = ExtResource("1_ro8ma")
+movimiento = Vector2(0, 0)
+tipo = "exacto"

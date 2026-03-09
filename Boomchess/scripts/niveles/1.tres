@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Nivel" load_steps=9 format=3 uid="uid://ycl46m7v5b4u"]
+
+[ext_resource type="Resource" uid="uid://do5kxfxhxjmcy" path="res://Boomchess/scripts/pieces/Rey.tres" id="1_kveyw"]
+[ext_resource type="Script" path="res://Boomchess/scripts/niveles/nivel.gd" id="1_p67ug"]
+[ext_resource type="Texture2D" uid="uid://b1752ru5x362" path="res://Boomchess/assets/textures/board/Live-Olive.png" id="3_0wxmr"]
+[ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="3_3vfng"]
+[ext_resource type="Resource" uid="uid://qles2tgxwmjf" path="res://Boomchess/scripts/pieces/Caballo.tres" id="4_720rc"]
+[ext_resource type="Texture2D" uid="uid://qudyubrg3272" path="res://Boomchess/assets/textures/board/MO107_1web.webp" id="4_n8u4g"]
+[ext_resource type="Resource" uid="uid://720kbn6lw5il" path="res://Boomchess/scripts/pieces/Torre.tres" id="5_cbe02"]
+[ext_resource type="Texture2D" uid="uid://c6njwi6uqqglj" path="res://Boomchess/assets/textures/board/32x32_sand_desert_dune.png" id="6_8fkwd"]
+
+[resource]
+script = ExtResource("1_p67ug")
+textura1 = ExtResource("3_0wxmr")
+textura2 = ExtResource("4_n8u4g")
+columnas = 3
+filas = 3
+obstaculos = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([ExtResource("1_kveyw")])
+sidebarTextura = ExtResource("6_8fkwd")
+sidebarColumnas = 4
+sidebarFilas = 1
+sidebarPiezas = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([ExtResource("3_3vfng"), ExtResource("4_720rc"), ExtResource("5_cbe02")])

@@ -1,7 +1,6 @@
 extends GridContainer
 
 
-@export var nivel : String
 @export var textura : Texture2D
 @export var columnas : int 
 @export var filas : int
@@ -34,3 +33,26 @@ func _ready() -> void:
 				tile._piece_update()
 			
 			add_child(tile)
+			# Crea un Sprite2D hijo en cada tile con textura alternada (patrón de tablero)
+			if textura != null:
+				var sprite := Sprite2D.new()
+				sprite.centered = false
+				sprite.position = Vector2.ZERO
+				sprite.z_index = -1  # siempre por debajo de todo
+				if (fila + col) % 2 == 0:
+					sprite.texture = textura
+				else:
+					sprite.texture = textura
+
+				# Ajusta el tamaño visual del sprite al tamaño del panel/tile
+				var tile_size: Vector2 = tile.size
+				if tile_size == Vector2.ZERO:
+					tile_size = tile.custom_minimum_size
+				if sprite.texture != null:
+					var tex_size: Vector2 = sprite.texture.get_size()
+					if tex_size.x != 0 and tex_size.y != 0:
+						sprite.scale = Vector2(
+							tile_size.x / tex_size.x,
+							tile_size.y / tex_size.y
+						)
+				tile.add_child(sprite)
