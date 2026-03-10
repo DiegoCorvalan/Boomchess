@@ -9,3 +9,4 @@ nombre = "Torre"
 icon = ExtResource("1_sq24g")
 movimiento = Vector2(0, -1)
 tipo = "continuo"
+poder = "explosion"

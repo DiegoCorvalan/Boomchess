@@ -9,3 +9,4 @@ nombre = "Caballo"
 icon = ExtResource("1_jkdis")
 movimiento = Vector2(-1, -2)
 tipo = "exacto"
+poder = "explosion"

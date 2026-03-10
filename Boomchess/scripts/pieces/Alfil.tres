@@ -9,3 +9,4 @@ nombre = "Alfil"
 icon = ExtResource("1_axwmu")
 movimiento = Vector2(-1, -1)
 tipo = "Continuo"
+poder = "rebote"

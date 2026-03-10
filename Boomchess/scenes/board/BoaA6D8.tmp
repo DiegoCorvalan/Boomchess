@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4uj27mlfxfv0"]
+
+[ext_resource type="Script" path="res://Boomchess/scripts/board/Tile.gd" id="1_6f4mn"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(20, 20)
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 12.0
+offset_bottom = 12.0
+pivot_offset = Vector2(11, 10)
+expand_mode = 1
+script = ExtResource("1_6f4mn")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 2
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

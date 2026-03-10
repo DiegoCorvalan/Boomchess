@@ -9,3 +9,4 @@ nombre = "Peon"
 icon = ExtResource("1_3upmv")
 movimiento = Vector2(0, -1)
 tipo = "Exacto"
+poder = "explosion"

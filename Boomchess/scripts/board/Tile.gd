@@ -14,7 +14,6 @@ func _piece_update():
 		texture = null
 		tooltip_text = ""
 		return
-	
 	texture = pieza.icon
 	tooltip_text = pieza.nombre
 
@@ -58,11 +57,13 @@ func _notification(what:int) -> void:
 				pieza_bk = null
 
 func _movment():
+	var destino_fila = null
+	var destino_columna = null
 	# Mueve la pieza según su Vector2 movimiento y el nombre de la casilla (por ej. "3_2" -> "4_2")
 	if not pieza:
 		return
-	
 	# Nombre de esta casilla, esperado en formato "fila_columna" (por ejemplo "3_2" o "3.2")
+	var poder = pieza.poder
 	var sep := ""
 	if name.contains("_"):
 		sep = "_"
@@ -77,7 +78,6 @@ func _movment():
 	
 	var fila := int(partes[0])
 	var col := int(partes[1])
-	
 	var grid := get_parent()
 	if grid == null:
 		return
@@ -89,9 +89,8 @@ func _movment():
 		return
 	
 	var tipo := (pieza.tipo if pieza.tipo != null else "exacto").to_lower()
-	
 	var destino_nombre := ""
-	
+	var no_tiene := ""
 	if tipo == "continuo":
 		# Avanza casilla por casilla hasta el borde (o hasta chocar con una pieza)
 		var candidata_fila := fila + paso_fila
@@ -103,6 +102,7 @@ func _movment():
 			var candidato_nombre := str(candidata_fila) + sep + str(candidata_col)
 
 			if not grid.has_node(candidato_nombre):
+				no_tiene = candidato_nombre
 				break
 			var candidato := grid.get_node(candidato_nombre)
 			if candidato.pieza != null:
@@ -120,11 +120,15 @@ func _movment():
 			return
 		
 		destino_nombre = str(ultima_ok_fila) + sep + str(ultima_ok_col)
+		destino_fila = ultima_ok_fila
+		destino_columna = ultima_ok_col
 	else:
 		# exacto (o cualquier valor desconocido): solo mueve 1 vez
 		var nueva_fila := fila + paso_fila
 		var nueva_col := col + paso_col
 		destino_nombre = str(nueva_fila) + sep + str(nueva_col)
+		destino_fila = nueva_fila
+		destino_columna = nueva_col
 	
 	if not grid.has_node(destino_nombre):
 		return
@@ -146,6 +150,7 @@ func _movment():
 	if root == null:
 		return
 	
+	print("Animacion ",pieza.nombre)
 	var ghost_animation := Sprite2D.new()
 	ghost_animation.texture = pieza.icon
 	ghost_animation.scale = Vector2(0.16, 0.16)  # más pequeño durante toda la animación (20,20)
@@ -163,7 +168,6 @@ func _movment():
 		destino_pos,         # Posición final
 		1                  # Duración en segundos
 	)
-	
 	# Cuando termine la animación, actualizamos el estado lógico del tablero
 	tween.finished.connect(func ():
 		ghost_animation.queue_free()
@@ -171,15 +175,63 @@ func _movment():
 		if destino.pieza != null and destino.pieza.tipo == "enemigo":
 			var label = $"../../Label"
 			if label:
+				label.text = "Win"
 				label.visible = true
 		
 		destino.pieza = pieza_bk2
 		destino._piece_update()
 		pieza_bk2 = null
-		
-
+		_power(destino_columna, destino_fila, poder, no_tiene)
 	)
 
+
+func _power(col, fila, poder, no_tiene):
+	var grid := get_parent()
+	
+	if poder == "explosion":
+		var fila1 = fila + 1
+		var filam1 = fila - 1
+		var col1 = col + 1
+		var colm1 = col - 1
+		
+		var positions = [
+			str(filam1) + "_" + str(colm1),
+			str(filam1) + "_" + str(col),
+			str(filam1) + "_" + str(col1),
+			str(fila) + "_" + str(colm1),
+			str(fila) + "_" + str(col1),
+			str(fila1) + "_" + str(colm1),
+			str(fila1) + "_" + str(col),
+			str(fila1) + "_" + str(col1)
+		]
+		
+		var node = grid.get_node(str(str(fila) + "_" + str(col)))
+		$AnimatedSprite2D.global_position = node.global_position + Vector2(12,12)
+		$AnimatedSprite2D.visible = true
+		$AnimatedSprite2D.play()
+		for pos in positions:
+			var candidato := grid.get_node(pos)
+			if candidato != null:
+				if candidato.pieza != null:
+					if candidato.pieza.tipo != "enemigo":
+						candidato.pieza = null
+						candidato.texture = null
+	
+	if poder == "rebote":
+		var actual = grid.get_node(str(str(fila) + "_" + str(col)))
+		var partes := str(no_tiene).split("_")
+		if partes.size() != 2:
+			return
+		fila = int(partes[0])
+		col = int(partes[1])
+		print(actual,partes)
+		if fila == 0:
+			actual.pieza.movimiento.y = -(actual.pieza.movimiento.y)
+		if col == 0:
+			actual.pieza.movimiento.x = -(actual.pieza.movimiento.x)
+		actual.pieza.poder = ""
+		actual._movment()
+		
 
 func _on_mouse_exited():
 	$Panel.visible = false # Replace with function body.

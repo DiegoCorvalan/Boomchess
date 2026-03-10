@@ -5,6 +5,8 @@ extends GridContainer
 @export var columnas : int 
 @export var filas : int
 
+signal perder
+
 @export var piezas : Array[Pieza] = [] # Piezas que aparecerán en el sidebar (filas*columnas)
 
 @export var tile_scene: PackedScene = preload("res://Boomchess/scenes/ui/PanelSidebar.tscn")
@@ -12,7 +14,6 @@ extends GridContainer
 func _ready() -> void:
 	# Configura el número de columnas del GridContainer
 	columns = columnas
-	
 	# Limpia cualquier hijo previo (por si se reusa la escena)
 	for child in get_children():
 		remove_child(child)
@@ -31,7 +32,7 @@ func _ready() -> void:
 			if idx < piezas.size():
 				tile.pieza = piezas[idx]
 				tile._piece_update()
-			
+			tile.sin_pieza.connect(_on_tile_sin_pieza)
 			add_child(tile)
 			# Crea un Sprite2D hijo en cada tile con textura alternada (patrón de tablero)
 			if textura != null:
@@ -56,3 +57,21 @@ func _ready() -> void:
 							tile_size.y / tex_size.y
 						)
 				tile.add_child(sprite)
+
+
+# Función que se ejecutará cuando cualquier tile emita "sin_pieza"
+func _on_tile_sin_pieza():
+	
+	# Actualizar el array de piezas (opcional, depende de tu lógica)
+	# Aquí puedes contar cuántas piezas quedan en el sidebar
+	
+	var piezas_restantes = 0
+	for child in get_children():
+		if child is TextureRect and child.pieza != null:
+			piezas_restantes += 1
+	
+	
+	if piezas_restantes == 0:
+		if $"../Label".visible == false:
+			$"../Label".text = "Lose"
+			$"../Label".visible = true

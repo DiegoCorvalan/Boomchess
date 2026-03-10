@@ -2,9 +2,8 @@ extends TextureRect # Cada casilla del tablero es un TextureRect
 
 var pieza_bk : Pieza # Guarda la pieza original mientras se arrastra
 var ghost : Control = null # Nodo "fantasma" que sigue al mouse durante el drag
-
+signal sin_pieza
 @export var pieza : Pieza # Datos de la pieza que está en esta casilla
-
 
 func _ready():
 	# Al iniciar el nodo, actualiza la textura según la pieza asignada
@@ -54,7 +53,6 @@ func _get_drag_data(_at_position):
 	# Vacía la casilla a nivel lógico y visual mientras se arrastra
 	pieza = null
 	_piece_update()
-	
 	# Los datos que se arrastran son la pieza, no solo la textura
 	return pieza_bk
 
@@ -76,6 +74,8 @@ func _notification(what:int) -> void:
 		if is_drag_successful():
 			# El arrastre terminó bien, ya no necesitamos la pieza anterior
 			pieza_bk = null
+			emit_signal("sin_pieza")
+			
 		else:
 			if pieza == null:
 				# El arrastre falló, restauramos la pieza original e icono
