@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Nivel" load_steps=8 format=3 uid="uid://xfe50nhq2lf7"]
+[gd_resource type="Resource" script_class="Nivel" format=3 uid="uid://xfe50nhq2lf7"]
 
 [ext_resource type="Resource" uid="uid://do5kxfxhxjmcy" path="res://Boomchess/scripts/pieces/Rey.tres" id="1_5jjf3"]
-[ext_resource type="Script" path="res://Boomchess/scripts/niveles/nivel.gd" id="1_nqu4e"]
+[ext_resource type="Script" uid="uid://dnmv15k63pdok" path="res://Boomchess/scripts/niveles/nivel.gd" id="1_nqu4e"]
+[ext_resource type="Script" uid="uid://dutngbnrfgqlh" path="res://Boomchess/scripts/pieces/Pieza.gd" id="1_sbpwy"]
 [ext_resource type="Resource" uid="uid://b2q5clomhb7m6" path="res://Boomchess/scripts/pieces/Peon.tres" id="3_50mso"]
 [ext_resource type="Resource" uid="uid://4nla6cxdct6y" path="res://Boomchess/scripts/pieces/Alfil.tres" id="4_xtrir"]
 [ext_resource type="Texture2D" uid="uid://cwsuse3u0vued" path="res://Boomchess/assets/textures/board/Board.png" id="5_dtipk"]
+[ext_resource type="Resource" uid="uid://b0o2y4skck7cx" path="res://Boomchess/scripts/pieces/Obstaculto.tres" id="6_htsl2"]
 [ext_resource type="Texture2D" uid="uid://mqac81ncrbhr" path="res://Boomchess/assets/textures/board/g1y3c_.png" id="6_uleb1"]
 [ext_resource type="Texture2D" uid="uid://c6njwi6uqqglj" path="res://Boomchess/assets/textures/board/32x32_sand_desert_dune.png" id="7_wwscx"]
 
@@ -14,8 +16,8 @@ textura1 = ExtResource("6_uleb1")
 textura2 = ExtResource("7_wwscx")
 columnas = 5
 filas = 5
-obstaculos = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([null, ExtResource("1_5jjf3")])
+obstaculos = Array[ExtResource("1_sbpwy")]([null, ExtResource("1_5jjf3")])
 sidebarTextura = ExtResource("5_dtipk")
 sidebarColumnas = 2
 sidebarFilas = 1
-sidebarPiezas = Array[Resource("res://Boomchess/scripts/pieces/Pieza.gd")]([ExtResource("3_50mso"), ExtResource("4_xtrir")])
+sidebarPiezas = Array[ExtResource("1_sbpwy")]([ExtResource("3_50mso"), ExtResource("4_xtrir"), ExtResource("6_htsl2")])
