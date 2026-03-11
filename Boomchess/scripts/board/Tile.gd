@@ -187,7 +187,12 @@ func _movment():
 
 func _power(col, fila, poder, no_tiene):
 	var grid := get_parent()
-	
+	var child = grid.get_children()
+	var max = child[-1].name.split("_")
+	if max.size() != 2:
+		return
+	var filaMax = int(max[0])
+	var colMax = int(max[1])
 	if poder == "explosion":
 		var fila1 = fila + 1
 		var filam1 = fila - 1
@@ -224,14 +229,41 @@ func _power(col, fila, poder, no_tiene):
 			return
 		fila = int(partes[0])
 		col = int(partes[1])
-		print(actual,partes)
+		print(col,colMax)
+		print(fila,filaMax)
 		if fila == 0:
 			actual.pieza.movimiento.y = -(actual.pieza.movimiento.y)
 		if col == 0:
 			actual.pieza.movimiento.x = -(actual.pieza.movimiento.x)
+		if fila == filaMax+1:
+			actual.pieza.movimiento.y = -(actual.pieza.movimiento.y)
+		if col == colMax+1:
+			actual.pieza.movimiento.x = -(actual.pieza.movimiento.x)
 		actual.pieza.poder = ""
 		actual._movment()
 		
-
+	if poder == "tp":
+		var actual = grid.get_node(str(str(fila) + "_" + str(col)))
+		var partes := str(no_tiene).split("_")
+		var nuevo
+		if partes.size() != 2:
+			return
+		fila = int(partes[0])
+		col = int(partes[1])
+		if fila == 0:
+			nuevo = str(str(filaMax) + "_" + str(col))
+		if col == 0:
+			nuevo = str(str(fila) + "_" + str(colMax))
+		if fila == filaMax+1:
+			nuevo = str(str(1) + "_" + str(col))
+		if col == colMax+1:
+			nuevo = str(str(fila) + "_" + str(1))
+		var nuevotile = grid.get_node(nuevo)
+		nuevotile.pieza = actual.pieza
+		nuevotile._piece_update()
+		nuevotile.pieza.poder = ""
+		actual.pieza = null
+		actual._piece_update()
+		nuevotile._movment()
 func _on_mouse_exited():
 	$Panel.visible = false # Replace with function body.

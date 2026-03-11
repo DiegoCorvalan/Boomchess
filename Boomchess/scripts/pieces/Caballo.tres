@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://qles2tgxwmjf"]
 
 [ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="1_bqmvh"]
-[ext_resource type="Texture2D" uid="uid://0fmr5pd5i680" path="res://Boomchess/assets/textures/pieces/augnf-w.svg" id="1_jkdis"]
+[ext_resource type="Texture2D" uid="uid://bvvx7358p2ek0" path="res://Boomchess/assets/textures/pieces/knight-w.png" id="1_ixqyw"]
 
 [resource]
 script = ExtResource("1_bqmvh")
 nombre = "Caballo"
-icon = ExtResource("1_jkdis")
+icon = ExtResource("1_ixqyw")
 movimiento = Vector2(-1, -2)
 tipo = "exacto"
 poder = "explosion"

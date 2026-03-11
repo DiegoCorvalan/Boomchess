@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://5dv4cwxeegjy"]
+
+[ext_resource type="Texture2D" uid="uid://dlumccpgp8jpx" path="res://Boomchess/assets/textures/pieces/rook4-w2.png" id="1_drdlc"]
+[ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="2_qxb0e"]
+
+[resource]
+script = ExtResource("2_qxb0e")
+nombre = "Torre"
+icon = ExtResource("1_drdlc")
+movimiento = Vector2(0, 1)
+tipo = "continuo"
+poder = "tp"

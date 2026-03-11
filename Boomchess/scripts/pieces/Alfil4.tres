@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Pieza" load_steps=3 format=3 uid="uid://jpt33yiawm2b"]
+
+[ext_resource type="Texture2D" uid="uid://c8uh27x6xivuj" path="res://Boomchess/assets/textures/pieces/bishop-w4.png" id="1_xj7yb"]
+[ext_resource type="Script" path="res://Boomchess/scripts/pieces/Pieza.gd" id="2_ev0q5"]
+
+[resource]
+script = ExtResource("2_ev0q5")
+nombre = "Alfil"
+icon = ExtResource("1_xj7yb")
+movimiento = Vector2(1, 1)
+tipo = "Continuo"
+poder = "rebote"
