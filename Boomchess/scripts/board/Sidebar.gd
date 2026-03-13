@@ -4,6 +4,7 @@ extends GridContainer
 @export var textura : Texture2D
 @export var columnas : int 
 @export var filas : int
+var PiezasActuales
 
 signal perder
 
@@ -69,9 +70,12 @@ func _on_tile_sin_pieza():
 	for child in get_children():
 		if child is TextureRect and child.pieza != null:
 			piezas_restantes += 1
-	
+	if PiezasActuales != piezas_restantes:
+		for child in get_children():
+			child.mouse_filter = 2
+	PiezasActuales = piezas_restantes
 	
 	if piezas_restantes == 0:
-		if $"../Label".visible == false:
+		if $"../Label".text != "Win":
 			$"../Label".text = "Lose"
 			$"../Label".visible = true

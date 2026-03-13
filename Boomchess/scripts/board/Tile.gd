@@ -87,7 +87,6 @@ func _movment():
 	var paso_col := int(pieza.movimiento.x)
 	if paso_fila == 0 and paso_col == 0:
 		return
-	
 	var tipo := (pieza.tipo if pieza.tipo != null else "exacto").to_lower()
 	var destino_nombre := ""
 	var no_tiene := ""
@@ -107,17 +106,19 @@ func _movment():
 			var candidato := grid.get_node(candidato_nombre)
 			if candidato.pieza != null:
 				if candidato.pieza.tipo != "enemigo":
+					print(candidato.pieza.tipo)
 					break
-			
 			ultima_ok_fila = candidata_fila
 			ultima_ok_col = candidata_col
+			
+			if candidato.pieza != null:
+				if candidato.pieza.tipo == "enemigo":
+					print(candidato.pieza.tipo)
+					break
 			
 			candidata_fila += paso_fila
 			candidata_col += paso_col
 		
-		# Si no pudo avanzar ni una casilla, no se mueve
-		if ultima_ok_fila == fila and ultima_ok_col == col:
-			return
 		
 		destino_nombre = str(ultima_ok_fila) + sep + str(ultima_ok_col)
 		destino_fila = ultima_ok_fila
@@ -129,15 +130,11 @@ func _movment():
 		destino_nombre = str(nueva_fila) + sep + str(nueva_col)
 		destino_fila = nueva_fila
 		destino_columna = nueva_col
-	
 	if not grid.has_node(destino_nombre):
-		return
-	
+		destino_nombre = self.name
+		destino_columna = col
+		destino_fila = fila
 	var destino := grid.get_node(destino_nombre)
-	
-	# Si hay una pieza amiga en el destino, no se mueve; si es enemigo, se permite (y se mostrará el label).
-	if destino.pieza != null and destino.pieza.tipo != "enemigo":
-		return
 	
 	# Animación visual: solo se mueve un sprite "fantasma" con el icono de la pieza,
 	# el Tile y el fondo permanecen quietos en el GridContainer.
@@ -150,7 +147,6 @@ func _movment():
 	if root == null:
 		return
 	
-	print("Animacion ",pieza.nombre)
 	var ghost_animation := Sprite2D.new()
 	ghost_animation.texture = pieza.icon
 	ghost_animation.scale = Vector2(0.16, 0.16)  # más pequeño durante toda la animación (20,20)
@@ -168,20 +164,25 @@ func _movment():
 		destino_pos,         # Posición final
 		1                  # Duración en segundos
 	)
+	if destino.pieza != null and destino.pieza.tipo == "enemigo":
+		var label = $"../../Label"
+		if label:
+			label.text = "Win"
 	# Cuando termine la animación, actualizamos el estado lógico del tablero
 	tween.finished.connect(func ():
 		ghost_animation.queue_free()
-		
 		if destino.pieza != null and destino.pieza.tipo == "enemigo":
 			var label = $"../../Label"
 			if label:
-				label.text = "Win"
 				label.visible = true
 		
 		destino.pieza = pieza_bk2
 		destino._piece_update()
 		pieza_bk2 = null
 		_power(destino_columna, destino_fila, poder, no_tiene)
+		var sidebra =self.get_parent().get_parent().get_child(1)
+		for child in sidebra.get_children():
+			child.mouse_filter = 1
 	)
 
 
@@ -213,7 +214,7 @@ func _power(col, fila, poder, no_tiene):
 		var node = grid.get_node(str(str(fila) + "_" + str(col)))
 		$AnimatedSprite2D.global_position = node.global_position + Vector2(12,12)
 		$AnimatedSprite2D.visible = true
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play("default")
 		for pos in positions:
 			var candidato := grid.get_node(pos)
 			if candidato != null:
@@ -229,17 +230,22 @@ func _power(col, fila, poder, no_tiene):
 			return
 		fila = int(partes[0])
 		col = int(partes[1])
-		print(col,colMax)
-		print(fila,filaMax)
 		if fila == 0:
 			actual.pieza.movimiento.y = -(actual.pieza.movimiento.y)
+			$AnimatedSprite2D.global_position = actual.global_position + Vector2(12,0)
 		if col == 0:
 			actual.pieza.movimiento.x = -(actual.pieza.movimiento.x)
+			$AnimatedSprite2D.global_position = actual.global_position + Vector2(0,12)
 		if fila == filaMax+1:
 			actual.pieza.movimiento.y = -(actual.pieza.movimiento.y)
+			$AnimatedSprite2D.global_position = actual.global_position + Vector2(12,24)
 		if col == colMax+1:
 			actual.pieza.movimiento.x = -(actual.pieza.movimiento.x)
+			$AnimatedSprite2D.global_position = actual.global_position + Vector2(24,12)
 		actual.pieza.poder = ""
+
+		$AnimatedSprite2D.visible = true
+		$AnimatedSprite2D.play("Bounce")
 		actual._movment()
 		
 	if poder == "tp":
@@ -259,11 +265,16 @@ func _power(col, fila, poder, no_tiene):
 		if col == colMax+1:
 			nuevo = str(str(fila) + "_" + str(1))
 		var nuevotile = grid.get_node(nuevo)
-		nuevotile.pieza = actual.pieza
-		nuevotile._piece_update()
-		nuevotile.pieza.poder = ""
-		actual.pieza = null
-		actual._piece_update()
-		nuevotile._movment()
+		if nuevotile.pieza == null or nuevotile.pieza.tipo == "enemigo":
+			nuevotile.pieza = actual.pieza
+			$AnimatedSprite2D.global_position = actual.global_position + Vector2(12,12)
+			$AnimatedSprite2D.visible = true
+			$AnimatedSprite2D.play("Tp")
+			nuevotile._piece_update()
+			nuevotile.pieza.poder = ""
+			actual.pieza = null
+			actual._piece_update()
+			nuevotile._movment()
+			$AnimatedSprite2D.global_position = nuevotile.global_position + Vector2(12,12)
 func _on_mouse_exited():
 	$Panel.visible = false # Replace with function body.

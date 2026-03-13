@@ -31,7 +31,7 @@ func _ready() -> void:
 				var sprite := Sprite2D.new()
 				sprite.centered = false
 				sprite.position = Vector2.ZERO
-				sprite.z_index = -1  # siempre por debajo de todo
+				sprite.z_index = -10  # siempre por debajo de todo
 				if (fila + col) % 2 == 0:
 					sprite.texture = textura1
 				else:

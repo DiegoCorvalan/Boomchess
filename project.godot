@@ -15,8 +15,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Boomchess"
-run/main_scene="uid://dhhtu6lcx2hc0"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="res://Boomchess/scripts/menu/menu.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Fruta/icon.svg"
 
 [autoload]

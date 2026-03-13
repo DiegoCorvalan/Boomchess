@@ -4,6 +4,7 @@ var pieza_bk : Pieza # Guarda la pieza original mientras se arrastra
 var ghost : Control = null # Nodo "fantasma" que sigue al mouse durante el drag
 signal sin_pieza
 @export var pieza : Pieza # Datos de la pieza que está en esta casilla
+var bloqueado 
 
 func _ready():
 	# Al iniciar el nodo, actualiza la textura según la pieza asignada

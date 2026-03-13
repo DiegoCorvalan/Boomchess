@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b2fdl6reljdau"]
+[gd_scene load_steps=2 format=3 uid="uid://b2fdl6reljdau"]
 
-[ext_resource type="Script" uid="uid://u7ttv7lbxj1k" path="res://Boomchess/scripts/niveles/NivelManager.gd" id="1_83imo"]
+[ext_resource type="Script" path="res://Boomchess/scripts/niveles/NivelManager.gd" id="1_83imo"]
 
-[node name="Control" type="Control" unique_id=1862999464]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_83imo")
 
-[node name="1" type="Button" parent="." unique_id=1394023992]
+[node name="1" type="Button" parent="."]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 29.0
@@ -19,7 +19,7 @@ offset_right = 33.0
 offset_bottom = 60.0
 text = "1"
 
-[node name="2" type="Button" parent="." unique_id=436351245]
+[node name="2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 29.0

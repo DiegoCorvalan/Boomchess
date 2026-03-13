@@ -1,8 +1,37 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4uj27mlfxfv0"]
+[gd_scene load_steps=24 format=3 uid="uid://b4uj27mlfxfv0"]
 
 [ext_resource type="Script" path="res://Boomchess/scripts/board/Tile.gd" id="1_6f4mn"]
 [ext_resource type="Texture2D" uid="uid://dxurocajiqueb" path="res://Boomchess/assets/sprites/79a0eceb71bb6a9939df582317038b81.png" id="2_ds0lq"]
+[ext_resource type="Texture2D" uid="uid://bje6uvv757dvo" path="res://Boomchess/assets/sprites/16_omnimageeffects.png" id="2_rjivl"]
 [ext_resource type="Script" path="res://Boomchess/scripts/board/AnimacionPoderes.gd" id="3_xg5eg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw23p"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(27, 96, 27, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqn7i"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(54, 96, 27, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osdi2"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(81, 96, 27, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlvhb"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(0, 451, 98, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvcgy"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(98, 451, 98, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0moo"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(196, 451, 98, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btbod"]
+atlas = ExtResource("2_rjivl")
+region = Rect2(294, 451, 98, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voo70"]
 atlas = ExtResource("2_ds0lq")
@@ -50,6 +79,37 @@ region = Rect2(256, 256, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n60io"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw23p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqn7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osdi2")
+}],
+"loop": false,
+"name": &"Bounce",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlvhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvcgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0moo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btbod")
+}],
+"loop": false,
+"name": &"Tp",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_voo70")
@@ -114,8 +174,7 @@ z_index = -1
 position = Vector2(11, 10)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_n60io")
-frame = 10
-frame_progress = 1.0
+animation = &"Bounce"
 speed_scale = 3.0
 script = ExtResource("3_xg5eg")
 
