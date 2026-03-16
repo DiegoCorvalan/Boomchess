@@ -1,15 +1,144 @@
-# Godot 4+ specific ignores
+# Godot export ignores
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Godot specific
 .godot/
-
-# Godot-specific ignores
-.import/
-export.cfg
-export_presets.cfg
-
-# Imported translations (automatically generated from CSV files)
+*.import
 *.translation
+export_presets.cfg
+.android/
+.android_studio/
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# Android/Gradle
+android/
+android_project/
+build/
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+local.properties
+*.iml
+.idea/
+.cxx/
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+obj/
+out/
+release/
+debug/
+*.pro
+*.pro.user
+*.pro.user.*
+*.pri
+*.prl
+*.a
+*.so
+*.dll
+*.exe
+*.lib
+*.dylib
+*.dSYM/
+
+# Android Studio
+*.ipr
+*.iws
+.idea/
+*.iml
+*.hprof
+*.log
+*.lock
+*.timestamp
+.cxx/
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+ExternalData/
+CMakeUserPresets.json
+.vscode/
+.idea/
+.DS_Store
+.cxx/
+.nativebuilds
+.externalNativeBuild
+
+# Export templates
+templates/
+export_templates/
+android_template/
+android_template_*
+android_debug.apk
+android_release.apk
+
+# User-specific files
+*.user
+*.user.*
+*.user.ini
+*.user.properties
+
+# Keystore files (sensitive)
+*.keystore
+*.jks
+debug.keystore
+release.keystore
+
+# Local configuration files
+export_presets.cfg
+project.godot.uid
+project.binary
+.project.godot
+.project.binary
+.files
+.scs
+.scu
+*.generated.tscn
+*.remap
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+\#*\#
+*.lock
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Build outputs
+bin/
+obj/
+build/
+export/
+exports/
+builds/
+*.exe
+*.pck
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-*
