@@ -1,23 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuub51f1twdki"]
+[gd_scene format=3 uid="uid://cuub51f1twdki"]
 
 [ext_resource type="PackedScene" uid="uid://dwso14e4ut5ir" path="res://Boomchess/scenes/board/Tablero.tscn" id="2_qeapa"]
+[ext_resource type="AudioStream" uid="uid://cfrf8b7df6se1" path="res://Boomchess/assets/sounds/Nivel/Levels Iniciales bykossmic.mp3" id="3_24dqc"]
 [ext_resource type="PackedScene" uid="uid://b7vlqn06773p2" path="res://Boomchess/scenes/ui/Sidebar.tscn" id="6_hehi4"]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" unique_id=1137190666]
 
-[node name="Tablero" parent="." instance=ExtResource("2_qeapa")]
+[node name="Tablero" parent="." unique_id=777278064 instance=ExtResource("2_qeapa")]
 offset_right = 90.0
 
-[node name="Sidebar" parent="." instance=ExtResource("6_hehi4")]
+[node name="Sidebar" parent="." unique_id=224868262 instance=ExtResource("6_hehi4")]
 offset_left = 24.0
 offset_top = 5.0
 offset_right = 90.0
 offset_bottom = 17.0
 filas = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=767133541]
 visible = false
 offset_left = 27.0
 offset_top = 11.0
 offset_right = 67.0
 offset_bottom = 34.0
+
+[node name="LevelsInicialesBykossmic" type="AudioStreamPlayer" parent="." unique_id=1404393408]
+stream = ExtResource("3_24dqc")
+volume_db = -13.684
+autoplay = true

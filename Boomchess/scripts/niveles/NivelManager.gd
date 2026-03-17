@@ -9,7 +9,6 @@ func _ready() -> void:
 func _process(delta):
 	pass
 
-
 func _on__pressed(name: String) -> void:
 	var path_nivel : String = "res://Boomchess/scripts/niveles/" + name + ".tres"
 	var datos : Nivel = load(path_nivel)
