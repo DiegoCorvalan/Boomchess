@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwso14e4ut5ir"]
+[gd_scene format=3 uid="uid://dwso14e4ut5ir"]
 
-[ext_resource type="Script" path="res://Boomchess/scripts/board/Tablero.gd" id="1_7mi2g"]
+[ext_resource type="Script" uid="uid://bebwgebdywrvt" path="res://Boomchess/scripts/board/Tablero.gd" id="1_7mi2g"]
+[ext_resource type="AudioStream" uid="uid://cfrf8b7df6se1" path="res://Boomchess/assets/sounds/Nivel/Levels Iniciales bykossmic.mp3" id="2_rlrk2"]
 
-[node name="Tablero" type="GridContainer"]
+[node name="Tablero" type="GridContainer" unique_id=494052865]
 offset_top = 33.0
 offset_right = 92.0
 offset_bottom = 149.0
 script = ExtResource("1_7mi2g")
 
-[node name="Fondo" type="GridContainer" parent="."]
+[node name="Fondo" type="GridContainer" parent="." unique_id=1788884954]
 layout_mode = 2
+
+[node name="LevelsInicialesBykossmic" type="AudioStreamPlayer" parent="." unique_id=1158277719]
+stream = ExtResource("2_rlrk2")
+autoplay = true

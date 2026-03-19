@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhhtu6lcx2hc0"]
+[gd_scene format=3 uid="uid://dhhtu6lcx2hc0"]
 
-[ext_resource type="Script" path="res://Boomchess/scripts/menu/menu.gd" id="1_qdgua"]
+[ext_resource type="Script" uid="uid://coxfi2pve45ka" path="res://Boomchess/scripts/menu/menu.gd" id="1_qdgua"]
 [ext_resource type="Texture2D" uid="uid://b34wjs4gyf4g0" path="res://Boomchess/assets/textures/UI/Captura de pantalla 2026-03-11 174856.png" id="2_wjcmm"]
-[ext_resource type="AudioStream" uid="uid://b83ehunjd7bmg" path="res://Boomchess/assets/sounds/menu/Strict Border - Reboot Me (Original Mix).mp3" id="3_wjcmm"]
+[ext_resource type="AudioStream" uid="uid://bnf1ysk4657et" path="res://Boomchess/assets/sounds/menu/Mockup - intro.mp3" id="3_wjcmm"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=101645773]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qdgua")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=523006886]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,14 +21,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1902563889]
 layout_mode = 0
 offset_right = 91.0
 offset_bottom = 160.0
 texture = ExtResource("2_wjcmm")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1009921283]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -42,22 +42,22 @@ offset_bottom = 55.6
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=404355345]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "    JUGAR    "
 
-[node name="options" type="Button" parent="VBoxContainer"]
+[node name="options" type="Button" parent="VBoxContainer" unique_id=35145232]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "OPCIONES"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=899941377]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "    SALIR     "
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=480693960]
 stream = ExtResource("3_wjcmm")
 volume_db = -11.5
 autoplay = true
